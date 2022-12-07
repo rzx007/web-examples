@@ -21,6 +21,9 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <a href="/pages/screen-recorder.html">
         <button type="button">屏幕录像</button>
       </a>
+      <a href="/pages/shard-request-data.html">
+      <button type="button">分片请求数据</button>
+    </a>
     </div>
     <p class="read-the-docs">
       Click on the Vite and TypeScript logos to learn more
