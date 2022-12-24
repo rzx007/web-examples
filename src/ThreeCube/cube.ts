@@ -1,14 +1,6 @@
-/*
- * @Author: 阮志雄
- * @Date: 2022-12-07 22:55:05
- * @LastEditTime: 2022-12-07 22:55:07
- * @LastEditors: 阮志雄
- * @Description: In User Settings Edit
- * @FilePath: \vite-canvas-demo\src\ThreeCube\cube.ts
- */
 import * as THREE from 'three'
 
-export class Model {
+export class BasicModel {
   geometry!: THREE.BufferGeometry;
   material!: THREE.Material;
   model!: THREE.Mesh
@@ -19,7 +11,7 @@ export type ModelParameters = {
   material?: THREE.Material;
   animateSwitch?: boolean
 }
-export default class Cube extends Model {
+export default class Cube extends BasicModel {
   // 创建几何体
   geometry: THREE.BoxGeometry
 

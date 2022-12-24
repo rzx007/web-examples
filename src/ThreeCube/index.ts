@@ -1,7 +1,9 @@
 import './style.css'
 import * as THREE from 'three'
-import Cube, { Model } from './cube'
-
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
+import Cube, { BasicModel } from './cube'
+import GLTFLoad, { Model } from './GLTFLoader'
+type ModelType = BasicModel | Model
 class App {
   // 渲染器
   renderer: THREE.WebGL1Renderer = new THREE.WebGL1Renderer({ antialias: true })
@@ -18,7 +20,7 @@ class App {
     dom?.appendChild(this.renderer.domElement)
 
     // 设置相机位置
-    this.camera.position.z = 5
+    this.camera.position.z = 10
 
     window.addEventListener('resize', () => {
       // 重置比例
@@ -40,6 +42,11 @@ class App {
     1000
   )
 
+  // 控制器
+  orbitControl = () => {
+    new OrbitControls(this.camera, this.renderer.domElement);
+  }
+
   // 动画
   animate = () => {
     requestAnimationFrame(this.animate)
@@ -59,24 +66,26 @@ class App {
     })
   }
   // 添加网络模型
-  modelList: Array<Model> = []
+  modelList: Array<ModelType> = []
 
-  addModel(mesh: Model) {
-    this.scene.add(mesh.model)
-    this.modelList.push(mesh)
+  addModel(mesh: ModelType) {
+    setTimeout(() => {
+      this.scene.add(mesh.model)
+      this.modelList.push(mesh)
+    }, 3000)
   }
-  private addModelList(models: Array<Model> | Model | undefined) {
+  private addModelList(models: Array<ModelType> | ModelType | undefined) {
     if (Array.isArray(models)) {
       models.forEach((model) => {
         this.addModel(model)
       })
     } else if (models) {
-      this.addModel(models as Model)
+      this.addModel(models as ModelType)
     }
   }
   static app: App
 
-  constructor(modelList?: Array<Model> | Model) {
+  constructor(modelList?: Array<ModelType> | ModelType) {
     // 实例化一次
     if (App.app) return
     App.app = this
@@ -84,6 +93,7 @@ class App {
     this.rendererSetting()
     this.animate()
     this.addModelList(modelList)
+    this.orbitControl()
   }
 }
 
@@ -92,10 +102,15 @@ const app = new App()
 // 设置相机位置
 
 
-const cube: Model = new Cube()
+const cube: BasicModel = new Cube()
 
 app.addModel(cube)
 
+const gltfModel = new GLTFLoad({ basePath: "/" })
+
+app.addModel(gltfModel)
+
+// app.camera.position.z = 10
 // 或者
 /**
  * const app = new App(new Cube())
