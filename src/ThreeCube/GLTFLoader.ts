@@ -1,9 +1,11 @@
+import App from ".";
 import { GLTF, GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
 // 导入轨道模型控制器
 import { Group } from "three/src/objects/Group";
 import { AmbientLight } from "three/src/lights/AmbientLight";
 import { SpotLight } from "three/src/lights/SpotLight";
 import { DirectionalLight } from "three/src/lights/DirectionalLight";
+import Cube, { BasicModel } from "./cube";
 
 export class Model {
   loader!: GLTFLoader;
@@ -68,3 +70,23 @@ export default class GLTFLoad extends Model {
 
   }
 }
+
+// 实例化
+const app = new App()
+// 设置相机位置
+
+
+// const cube: BasicModel = new Cube()
+
+// app.addModel(cube)
+
+const gltfModel = new GLTFLoad({ basePath: "/" })
+
+app.addModel(gltfModel)
+
+// app.camera.position.z = 10
+// 或者
+/**
+ * const app = new App(new Cube())
+ * app.camera.position.z = 5
+ */

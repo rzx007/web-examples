@@ -15,8 +15,8 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <a href="/pages/starry-sky.html">
         <button type="button">canvas星星</button>
       </a>
-      <a href="/pages/three-cube.html">
-        <button type="button">THREE-CUBE</button>
+      <a href="/pages/three/index.html">
+        <button type="button">THREE-3D</button>
       </a>
       <a href="/pages/screen-recorder.html">
         <button type="button">屏幕录像</button>

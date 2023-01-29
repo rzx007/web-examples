@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-
+import App from ".";
 export class BasicModel {
   geometry!: THREE.BufferGeometry;
   material!: THREE.Material;
@@ -45,3 +45,12 @@ export default class Cube extends BasicModel {
     this.model = new THREE.Mesh(this.geometry, this.material)
   }
 }
+
+// 实例化
+const app = new App()
+// 设置相机位置
+
+
+const cube: BasicModel = new Cube()
+
+app.addModel(cube)

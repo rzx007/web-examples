@@ -3,6 +3,7 @@ import * as THREE from 'three'
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 import Cube, { BasicModel } from './cube'
 import GLTFLoad, { Model } from './GLTFLoader'
+import { Material } from 'three'
 type ModelType = BasicModel | Model
 class App {
   // 渲染器
@@ -83,9 +84,16 @@ class App {
       this.addModel(models as ModelType)
     }
   }
+  // 辅助网格线
+  private gridHelper() {
+    const gridHelper = new THREE.GridHelper(100, 100);
+    (gridHelper.material as Material).opacity = 0.25;
+    (gridHelper.material as Material).transparent = true;
+    this.scene.add(gridHelper)
+  }
   static app: App
 
-  constructor(modelList?: Array<ModelType> | ModelType) {
+  constructor(modelList?: Array<ModelType> | ModelType, grid = true) {
     // 实例化一次
     if (App.app) return
     App.app = this
@@ -94,25 +102,8 @@ class App {
     this.animate()
     this.addModelList(modelList)
     this.orbitControl()
+    grid && this.gridHelper()
   }
 }
 
-// 实例化
-const app = new App()
-// 设置相机位置
-
-
-const cube: BasicModel = new Cube()
-
-app.addModel(cube)
-
-const gltfModel = new GLTFLoad({ basePath: "/" })
-
-app.addModel(gltfModel)
-
-// app.camera.position.z = 10
-// 或者
-/**
- * const app = new App(new Cube())
- * app.camera.position.z = 5
- */
+export default App

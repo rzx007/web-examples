@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./style.css">
+  <title>THREE-3D</title>
+</head>
+
+<body>
+  <main>
+    <nav>
+      <ul>
+        <li data-src="https://threejs.org/examples/#webgl_animation_cloth"><a href="javascript:void(0)">官网例子</a></li>
+        <li data-src="./three-cube.html"><a href="javascript:void(0)">3D立方形</a></li>
+        <li data-src="./three-3bro.html"><a href="javascript:void(0)">萌3兄弟</a></li>
+        <li data-src="./css3d_youtube.html"><a href="javascript:void(0)">css3d</a></li>
+        <li data-src="./three-glb.html"><a href="javascript:void(0)">glb模型</a></li>
+      </ul>
+    </nav>
+    <section>
+      <iframe width="100%" height="100%" frameborder="0" src="https://threejs.org/examples/#webgl_animation_cloth"></iframe>
+    </section>
+  </main>
+</body>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var list = document.querySelectorAll('li');
+    var iframe = document.querySelector('iframe');
+    for (let index = 0; index < list.length; index++) {
+      const element = list[index];
+ 
+      element.onclick = function () {
+        var src = this.getAttribute('data-src');
+        iframe.src = src ||'';
+      }
+    }
+    
+  }, false);
+
+</script>
+
+</html>
