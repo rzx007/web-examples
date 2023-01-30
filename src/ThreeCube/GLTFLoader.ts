@@ -1,3 +1,11 @@
+/*
+ * @Author: 阮志雄
+ * @Date: 2023-01-30 09:42:08
+ * @LastEditTime: 2023-01-30 16:47:44
+ * @LastEditors: 阮志雄
+ * @Description: In User Settings Edit
+ * @FilePath: \web-examples\src\ThreeCube\GLTFLoader.ts
+ */
 import App from ".";
 import { GLTF, GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
 // 导入轨道模型控制器
@@ -6,6 +14,7 @@ import { AmbientLight } from "three/src/lights/AmbientLight";
 import { SpotLight } from "three/src/lights/SpotLight";
 import { DirectionalLight } from "three/src/lights/DirectionalLight";
 import Cube, { BasicModel } from "./cube";
+import * as THREE from "three";
 
 export class Model {
   loader!: GLTFLoader;
@@ -48,10 +57,15 @@ export default class GLTFLoad extends Model {
   async setModel() {
     const model = await this.loadModel() as Group
     const groups = new Group()
-    const spotLight = new DirectionalLight(0xffffff)
-    const ambientLight = new AmbientLight(0xffffff)
-    groups.add(model)
+    const spotLight = new DirectionalLight(0xffffff, .5)
+    spotLight.position.set(0, 10, 0)
+    const ambientLight = new SpotLight(0xffffff)
+    const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444);
+    hemiLight.position.set(0, 50, 0);
+    groups.add(hemiLight);
     groups.add(spotLight)
+    groups.add(model)
+    groups.position.y = 1.5
     this.model = groups
   }
   animate = () => {
@@ -74,8 +88,8 @@ export default class GLTFLoad extends Model {
 // 实例化
 const app = new App()
 // 设置相机位置
-
-
+app.scene.background = new THREE.Color(0xffffff)
+app.camera.position.y = 5
 // const cube: BasicModel = new Cube()
 
 // app.addModel(cube)

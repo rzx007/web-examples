@@ -91,6 +91,13 @@ class App {
     (gridHelper.material as Material).transparent = true;
     this.scene.add(gridHelper)
   }
+
+  // 显示坐标轴
+  private axisHelper() {
+    const axisHelper = new THREE.AxesHelper(5);
+    this.scene.add(axisHelper);
+  }
+
   static app: App
 
   constructor(modelList?: Array<ModelType> | ModelType, grid = true) {
@@ -103,6 +110,7 @@ class App {
     this.addModelList(modelList)
     this.orbitControl()
     grid && this.gridHelper()
+    this.axisHelper()
   }
 }
 
