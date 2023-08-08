@@ -22,8 +22,11 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
         <button type="button">屏幕录像</button>
       </a>
       <a href="/pages/shard-request-data.html">
-      <button type="button">分片请求数据</button>
-    </a>
+        <button type="button">分片请求数据</button>
+      </a>
+      <a href="/pages/createObjectURL.html">
+        <button type="button">文件预览</button>
+      </a>
     </div>
     <p class="read-the-docs">
       Click on the Vite and TypeScript logos to learn more
