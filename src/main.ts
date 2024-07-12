@@ -27,6 +27,17 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <a href="/pages/createObjectURL.html">
         <button type="button">文件预览</button>
       </a>
+        <a href="/pages/audio-visualization.html">
+        <button type="button">音频可视化</button>
+      </a>
+      </a>
+        <a href="/pages/snake-game.html">
+        <button type="button">贪吃蛇</button>
+      </a>
+       </a>
+        <a href="/pages/space-invaders.html">
+        <button type="button">飞机大战</button>
+      </a>
     </div>
     <p class="read-the-docs">
       Click on the Vite and TypeScript logos to learn more

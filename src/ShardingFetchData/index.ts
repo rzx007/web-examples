@@ -24,5 +24,5 @@ async function loadNovel() {
   console.log(text);
 }
 
-loadNovel();
+loadNovel()
 

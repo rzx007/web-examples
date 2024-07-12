@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <iframe height="700px" width="1000px"
+    src='http://data-platform-demo.bobandata.com/#/main?name=%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86&id=2&url=http%3A%2F%2Fdata-platform-demo.bobandata.com%2Fres-manager%2F'
+    frameborder="0"></iframe>
+
+</body>
+<script>
+  window.onload = function () {
+    var iframe = document.getElementsByTagName('iframe')[0];
+    var iframeWindow = iframe.contentWindow;
+    fetch('/puppeteer/login', {
+      method: 'GET',
+    })
+    .then(response => response.json())
+      .then(data => {
+        console.log(data)
+        const loclStorage = data.data;
+        // 循环设置localStorage
+        for (let key in loclStorage) {
+          iframeWindow.localStorage.setItem(key, loclStorage[key]);
+        }
+        console.log(iframeWindow.localStorage);
+        // 设置src
+      })
+      .catch(error => console.error('Error:', error));
+  }
+</script>
+
+</html>

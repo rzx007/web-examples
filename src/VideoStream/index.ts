@@ -1,6 +1,5 @@
 document.getElementById('btn_start')?.addEventListener('click', async () => {
   const video = document.getElementById('videos') as HTMLVideoElement
-  const videoStream: MediaStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true })
-  video.srcObject = videoStream
+  video.srcObject = await navigator.mediaDevices.getUserMedia({video: true, audio: true})
 })
 document.getElementById('btn_end')?.addEventListener('click', () => {})

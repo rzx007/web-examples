@@ -1,12 +1,12 @@
 import { Particle } from './particle';
 import './style.css'
-export type Tdirection = 'right' | 'left' | 'up' | 'down' | 'around'
+export type Direction = 'right' | 'left' | 'up' | 'down' | 'around'
 class StarrySky {
   canvas: HTMLCanvasElement;
   ctx: CanvasRenderingContext2D;
   particles: Particle[];
   count: number;
-  private direction?: Tdirection;
+  private direction?: Direction;
   constructor() {
     this.canvas = document.createElement('canvas') as HTMLCanvasElement
     this.canvas.width = innerWidth;
@@ -19,11 +19,11 @@ class StarrySky {
     this.direction = 'right'
     this.animate();
   }
-  set directions(direction: Tdirection ) {
+  set directions(direction: Direction ) {
     this.direction = direction
   }
   get directions() {
-    return this.direction as Tdirection
+    return this.direction as Direction
   }
   draw() {
     this.ctx?.clearRect(0, 0, this.canvas.width, this.canvas.height)
@@ -44,4 +44,10 @@ class StarrySky {
   }
 }
 const star = new StarrySky()
-star.directions = 'around'
+star.directions = 'down'
+// 隔一段时间，随机更改方向
+setInterval(() => {
+  const directions = ['right', 'left', 'up', 'down', 'around']
+  const random = Math.floor(Math.random() * 5)
+  star.directions = directions[random] as Direction
+}, 3000)
